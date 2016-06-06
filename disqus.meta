@@ -1,0 +1,2 @@
+description="Adds Disqus comment system to your Shaarli"
+parameters="DISQUS_SHORTNAME"
