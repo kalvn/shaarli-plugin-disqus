@@ -1,12 +1,12 @@
 <?php
 
-function hook_disqus_render_linklist($data)
+function hook_disqus_render_linklist($data, $config)
 {
-    if(!isset($GLOBALS['plugins']['DISQUS_SHORTNAME'])){
-        return $data;
+    if(isset($config)){
+        $disqusShortname = $config->get('plugins.DISQUS_SHORTNAME');
+    } else if(isset($GLOBALS['plugins']['DISQUS_SHORTNAME'])){
+        $disqusShortname = $GLOBALS['plugins']['DISQUS_SHORTNAME'];
     }
-    
-    $disqusShortname = $GLOBALS['plugins']['DISQUS_SHORTNAME'];
 
     if(count($data['links']) === 1 && !isset($_GET['page']) && !empty($disqusShortname)){
         foreach ($data['links'] as $key => $link) {
